@@ -1,0 +1,11 @@
+# Paths a student's unattended agent run may never change.
+# One path prefix per line; blank lines and # comments ignored.
+# Read by the reach check in your own delegation script:
+#   git diff --name-only main | grep -F -f <(grep -v '^#' .protected-paths | grep .)
+# A non-empty result is a finding, not a fix. Say it in the PR's failure log.
+.github/
+Dockerfile
+compose.yaml
+appsettings.Production.json
+.protected-paths
+LICENSE

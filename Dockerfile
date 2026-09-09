@@ -15,12 +15,12 @@ RUN dotnet restore
 
 # 2. Copy all remaining source files
 COPY . . 
-RUN dotnet build -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build ContigoServer.csproj -c $BUILD_CONFIGURATION -o /app/build
 
 # Publish stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish ContigoServer.csproj -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Final stage
 FROM base AS final

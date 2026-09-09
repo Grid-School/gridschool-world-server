@@ -17,6 +17,22 @@ docker compose up
 Server listens on :8080. `/ws` is the world. `/health` is the health check — and if the world is
 empty, it will tell you the server is dead. It is not dead. That is issue GF-1. Welcome.
 
+## Test it
+
+```bash
+dotnet test
+```
+
+One command, exit code meaningful, no prompts. CI runs it on every pull request and `main` will not
+merge on red. Your check goes in `tests/ContigoServer.Tests/`, beside the two that boot the server
+in-process and hit `/health` and `/ws`. A check counts when it fails on `main` and passes on your branch.
+
+## Paths an unattended run may not touch
+
+`.protected-paths` lists them. If you let an agent work on a branch without watching it, diff the
+branch against that list before you open the PR (`git diff --name-only main` is enough). A hit is a
+finding for your PR's failure log, not something to quietly revert.
+
 ## Contributing
 
 Read `CONTRIBUTING.md`. Every change ships through the ceremony: contract → PR → review → staging.

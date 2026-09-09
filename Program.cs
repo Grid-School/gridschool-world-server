@@ -35,3 +35,5 @@ app.MapGet("/health", async context =>
 });
 
 app.Run();
+// Lets the test project boot the app in-process (WebApplicationFactory<Program>).
+public partial class Program { }
